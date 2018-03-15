@@ -20,12 +20,12 @@ class Controller_Base extends Controller_Rest
     }
     protected function encode($data)
     {
-        return  JWT::encode($data, $secret_key);
+        return  JWT::encode($data, $this->secret_key);
         
     }
     protected function decode($data)
     {
-        return  JWT::decode($data, $secret_key, array('HS256'));
+        return  JWT::decode($data, $this->secret_key, array('HS256'));
         
     }
 
@@ -39,7 +39,7 @@ class Controller_Base extends Controller_Rest
                 "role" => $id_role,
                 "profilePicture" => $profilePicture,
         );
-        $encodedToken = JWT::encode($token, $secret_key);
+        $encodedToken = JWT::encode($token, $this->secret_key);
         return $encodedToken;
     }
     protected function decodeToken()
@@ -48,7 +48,7 @@ class Controller_Base extends Controller_Rest
         $token = $header['Authorization'];
         if(!empty($token))
         {
-            $decodedToken = JWT::decode($token, $secret_key, array('HS256'));
+            $decodedToken = JWT::decode($token, $this->secret_key, array('HS256'));
             return $decodedToken;
         }      
     }
@@ -59,7 +59,7 @@ class Controller_Base extends Controller_Rest
             $token = $header['Authorization'];
             if(!empty($token))
             {
-                $decodedToken = JWT::decode($token, $secret_key, array('HS256'));
+                $decodedToken = JWT::decode($token, $this->secret_key, array('HS256'));
                 $query = Model_Users::find('all', 
                     ['where' => ['userName' => $decodedToken->userName, 
                                  'password' => $decodedToken->password, 
