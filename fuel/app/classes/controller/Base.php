@@ -20,7 +20,7 @@ class Controller_Base extends Controller_Rest
     }
     protected function encode($data)
     {
-        return  JWT::encode($data, $this->secret_key);
+        return  JWT::encode($data, this->secret_key);
         
     }
     protected function decode($data)
@@ -38,7 +38,7 @@ class Controller_Base extends Controller_Rest
                 "email" => $email,
                 "role" => $id_role,
                 "profilePicture" => $profilePicture,
-                
+
         );
         $encodedToken = JWT::encode($token, $this->secret_key);
         return $encodedToken;
