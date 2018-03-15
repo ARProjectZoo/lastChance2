@@ -38,6 +38,7 @@ class Controller_Base extends Controller_Rest
                 "email" => $email,
                 "role" => $id_role,
                 "profilePicture" => $profilePicture,
+                
         );
         $encodedToken = JWT::encode($token, $this->secret_key);
         return $encodedToken;
