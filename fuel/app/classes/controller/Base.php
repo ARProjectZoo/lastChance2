@@ -20,7 +20,7 @@ class Controller_Base extends Controller_Rest
     }
     protected function encode($data)
     {
-        return  JWT::encode($data, this->secret_key);
+        return  JWT::encode($data, $this->secret_key);
         
     }
     protected function decode($data)
